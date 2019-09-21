@@ -45,7 +45,8 @@
           <input id="userName" type="text" class="input_txt" placeholder="邮箱/手机号" />
           <input id="password" type="password" class="input_pass" placeholder="密码" />
           <!-- <input type="submit" class="input_sub" value="登 录"> -->
-          <button id="btnLogin" type="button" class="input_sub">登 录</button>
+          <!-- <button id="btnLogin" type="button" class="input_sub">登 录</button> -->
+          <button type="button" id="btnLogin" class="input_sub">登 录</button>
         </form>
       </div>
     </div>
@@ -55,7 +56,7 @@
     <script src="./js/utils/config.js"></script>
     <script src="./js/utils/user.js"></script>
 
-    <script>
+    <!-- <script>
       // 思路
       // 给按钮添加点击事件
       // 1. 收集用户的信息，进行简单的判断
@@ -84,6 +85,26 @@
           });
         }
       });
+    </script> -->
+    <script>
+     $("#btnLogin").click(function(){
+       var userName = $("#userName").val();
+       var password = $("#password").val(); 
+       console.log(userName,password);
+       if(userName == "" ||password == ""){
+         alert('请输入用户名或密码');
+       }
+       else{
+         $.post('http://localhost:8000/admin/login',{user_name:userName,password:password}, function(res){
+           console.log(res);
+           if(res.code == "200"){
+             alert('登录成功');
+           }else{
+             alert(res.msg);
+           }
+         })
+       }
+     })
     </script>
   </body>
 </html>

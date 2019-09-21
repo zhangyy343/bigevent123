@@ -106,6 +106,8 @@
       });
     </script> -->
     <script>
+    
+
      $("#btnLogin").click(function(){
        var userName = $("#userName").val();
        var password = $("#password").val(); 
@@ -116,19 +118,29 @@
         //  alert('请输入用户名或密码');
        }
        else{
-         $.post('http://localhost:8000/admin/login',{user_name:userName,password:password}, function(res){
-           console.log(res);
-           if(res.code == "200"){
-             alert('登录成功');
-          window.location.href='./index.html';
+        //  $.post('http://localhost:8000/admin/login',{user_name:userName,password:password}, function(res){
+        //    console.log(res);
+        //    if(res.code == "200"){
+        //      alert('登录成功');
+        //   window.location.href='./index.html';
+        //    }else{
+        //     //  alert(res.msg);
+        //     $('#pResult').html(res.msg);
+        // $('#myModal').modal('show');
+        //    }
+        //  })
+        user.login(userName,password,function(res){
+          if(res.code == 200){
+            alert('登录成功');
+                 window.location.href='./index.html';
            }else{
             //  alert(res.msg);
             $('#pResult').html(res.msg);
         $('#myModal').modal('show');
            }
          })
-       }
-     })
+          }
+        })     
     </script>
   </body>
 </html>

@@ -165,6 +165,17 @@
       });
     </script> -->
     <script>
+        $(function(){
+        user.getInfo(function(res){
+          console.log(res);
+          if(res.code == 200){
+            $('#userName').html(res.data.nickname);
+            $('#userImg').attr('src',res.data.user_pic);
+          }
+        })
+         });
+
+
     $('#btnLogout').click(function(){
       // alert(1);
       if(window.confirm('确定要退出吗？')){

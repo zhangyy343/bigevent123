@@ -1,13 +1,19 @@
 var user={
     login:function(userName,password,callback){
         // alert('login');
-        $.post('http://localhost:8000/admin/login',{user_name:userName,password:password}, function(res){
+        $.post(URLIST.user_login,{user_name:userName,password:password}, function(res){
             callback(res);
          });
     },
     logout:function(callback){
-        $.post('http://localhost:8000/admin/logout',function(res){
+        $.post(URLIST.uesr_logout,function(res){
             callback(res);
         })
+    },
+    getInfo:function(callback){
+     $.get(URLIST.user_info,function(res){
+          callback(res);
+     })
     }
-    };
+}
+    
